@@ -1,0 +1,169 @@
+<html>
+
+<head>
+  <title>MQTT Over the Websocket</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+  <style>
+    body{
+    background-image: url(https://luminfire.com/wp-content/uploads/2015/08/luminfire-mac-os-x-desktop-background-image-2.jpg);
+    background-repeat:no-repeat;
+    background-size: cover;
+    }
+
+    #Title{
+    background-image: url(https://www.sqwidnet.com/wp-content/uploads/2018/05/iot-challenge-banner.png);
+    background-repeat:repeat; 
+    background-size: contain;
+    color: black;
+    position: absolute;
+    top: 30px;
+    left: 390px;
+    font-size: 50px;
+    font-weight: bold;
+
+    }
+
+    #brokersField{
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 40px;
+    margin-top: 160px;
+    margin-left: 20px;
+    margin-right: 867px;
+    background-color: skyblue;
+    }
+
+    #subscribeField{
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 50px;
+    margin-left: 880px;
+    margin-top: -260px;
+    margin-right: 30px;
+    background-color:skyblue
+
+    }
+
+    #btnConnect{
+    font-size: 14px;
+    }
+
+    #btnDisconnect{
+    font-size: 14px;
+    }
+
+    #btnSubscribe{
+    font-size: 14px;
+    }
+
+    #btnUnsubscribe{
+    font-size: 14px;
+    }
+
+     #publishField{
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 50px;
+      margin-left: 440px;
+      margin-top: -290px;
+      margin-right: 425px;
+      background-color:skyblue;
+    }
+
+    input{
+    width: 210px;
+    }
+
+    #status{
+    color: green;
+    }
+
+    #brokersTable,th{
+      background-color:dodgerblue;
+      color: white;
+    }
+
+    tr{
+      background-color: lightblue;
+      color: black;
+    }
+    s
+    #receiver, table,th ,td{
+      padding-top: 30px;
+      padding-bottom: 30px;
+      padding-left: 80px;
+      padding-right: 80px;
+      border: 2px solid black;
+      border-collapse: collapse;
+      margin-top: 150px;
+    }
+
+    h1{
+      color:black;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="Title">MQTT Over Websocket</h1>
+  <!-- Broker -->
+  <div id="brokersField">
+    <center>
+      <h2>Broker</h2>
+      <label>Address:</label>
+      <input type="text" id="broker" name="address" value=wss://test.mosquitto.org:8081/mqtt /><br>
+      <button type="button" id="btnConnect" class="btn btn-primary">Connect</button>
+      <button type="button" id="btnDisconnect" class="btn btn-primary">Disconnect</button><br><br>
+      <!-- Status -->
+      <h4>Status</h4>
+      <h5 id="status">Status...</h5>
+    </center>
+  </div>
+
+  <!-- Publish -->
+  <div id="publishField">
+    <center>
+          <h2>Publish</h2>
+          <label>Topic</label>
+          <input type="text" id="pubTopic" name="topic"><br>
+          <label>Payload</label>
+          <input type="text" id="pubPayload" name="payload"><br>
+          <button type="button" class="btn btn-primary" id="btnPublish">Publish</button>
+    </center>
+  </div>
+
+  <!-- Subscribe -->
+  <div id="subscribeField">
+    <center>
+      <h2>Subscribe</h2>
+      <label>Topic:</label>
+      <input id="subcriberTopic" name="subcriberTopic"/><br><br>
+      <button type="button" id="btnSubscribe" class="btn btn-primary">Subscribe</button>
+      <button type="button" id="btnUnsubscribe" class="btn btn-primary">Unsubscribe</button>
+    </center>
+  </div>
+
+  <div id="">
+    <center>
+      <table id="brokersTable">
+        <thead>
+            <th>Topic</th>
+            <th>Payload</th>
+            <th>Timestamp</th>
+        </thead>
+        <tbody id="brokersMessage"></tbody>
+      </table>
+    </center>
+  </div>
+
+  <script src="scripts/browserMqtt.js"></script>
+  <script src="scripts/controller.js"></script>
+
+</body>
+
+
+</html>
