@@ -10,18 +10,18 @@ $(document).ready(function () {
 
     client.on("connect", function () {
       console.log("Connected")
-      $("#status").text("Connected!!!!!")
+      $("#statusCheck").text("Connected!!!!!")
     })
 
     client.on("message", function (topic, payload) {
       console.log("Message: " + [topic, payload].join(" : "));
-      $("#brokersMessage").append("<tr><td>" + topic + "</td><td>" + payload + "</td><td>" + moment().format("MMMM Do YYYY, h:mm:ss a") + "</td></tr>");
+      $("#brokersMessage").append('<tr><td>' + topic + "</td><td>" + payload + '</td><td>'+ moment().format('MMMM Do YYYY, h:mm:ss a') + '</td></tr>');
     })
 
     $("#btnSubscribe").click(function (e) {
       e.preventDefault();
       console.log("Subscribe button clicked");
-      var subcriberTopic = $("#subcriberTopic").val();
+      var subcriberTopic = $("#subTopic").val();
       console.log(subcriberTopic);
       client.subscribe(subcriberTopic)
     });
@@ -29,8 +29,8 @@ $(document).ready(function () {
     $("#btnPublish").click(function (e) {
       e.preventDefault();
       console.log("Publish button clicked");
-      var topic = $("input[name=topic]").val();
-      var payload = $("input[name=payload]").val();
+      var topic = $("#pubTopic").val();
+      var payload = $("#pubPayload").val();
       client.publish(topic, payload)
       console.log(topic, payload)
     })
